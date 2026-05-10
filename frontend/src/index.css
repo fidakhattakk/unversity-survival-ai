@@ -1,0 +1,70 @@
+@import "tailwindcss";
+
+/* ── UETSurvival.ai Design System ── */
+
+@theme {
+  --color-primary: #6C5CE7;
+  --color-primary-light: #A29BFE;
+  --color-accent: #00CEC9;
+  --color-accent-warm: #FD79A8;
+  --color-danger: #FF6B6B;
+  --color-warning: #FDCB6E;
+  --color-success: #00B894;
+  --color-surface: #1A1A2E;
+  --color-surface-light: #16213E;
+  --color-surface-card: #0F3460;
+  --color-text: #EAEAEA;
+  --color-text-muted: #8B8B9E;
+
+  --font-sans: 'Inter', 'Outfit', system-ui, sans-serif;
+
+  --radius-lg: 1rem;
+  --radius-xl: 1.5rem;
+}
+
+/* ── Base ── */
+body {
+  font-family: var(--font-sans);
+  background: linear-gradient(135deg, #0F0C29 0%, #302B63 50%, #24243E 100%);
+  color: var(--color-text);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* ── Glassmorphism utility ── */
+.glass {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.glass-strong {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+/* ── Glow effects ── */
+.glow-primary {
+  box-shadow: 0 0 20px rgba(108, 92, 231, 0.3),
+              0 0 60px rgba(108, 92, 231, 0.1);
+}
+
+.glow-accent {
+  box-shadow: 0 0 20px rgba(0, 206, 201, 0.3),
+              0 0 60px rgba(0, 206, 201, 0.1);
+}
+
+/* ── Scrollbar ── */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(108, 92, 231, 0.4);
+  border-radius: 3px;
+}
