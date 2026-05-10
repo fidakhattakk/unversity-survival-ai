@@ -3,6 +3,9 @@ import { motion } from 'framer-motion'
 import BottomNav from './components/ui/BottomNav'
 import StickerEngine from './components/stickers/StickerEngine'
 import BunkCalculator from './features/bunk_calc/BunkCalculator'
+import Scanner from './features/scanner/Scanner'
+import VoiceNotes from './features/voice_notes/VoiceNotes'
+import ReelsFeed from './features/reels_feed/ReelsFeed'
 import './App.css'
 
 function App() {
@@ -26,9 +29,12 @@ function App() {
           transition={{ duration: 0.6 }}
           className="relative z-10 p-6 pb-32 pt-12 min-h-screen flex flex-col justify-center"
         >
+
           <Routes>
             <Route path="/" element={<BunkCalculator />} />
-            {/* Other feature routes will go here as we build them */}
+            <Route path="/scanner" element={<Scanner />} />
+            <Route path="/voice" element={<VoiceNotes />} />
+            <Route path="/reels" element={<ReelsFeed />} />
           </Routes>
         </motion.main>
 
