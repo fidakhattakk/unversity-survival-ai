@@ -11,10 +11,12 @@ dist/
 build/
 *.egg-info/
 
-# Environment
+# Environment — never commit secrets!
 .env
 .env.local
 .env.production
+backend/.env
+frontend/.env
 
 # IDE
 .vscode/
