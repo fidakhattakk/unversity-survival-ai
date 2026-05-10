@@ -38,6 +38,6 @@ from api import bunk, roast, excuse, classroom, reels, media
 # app.include_router(bunk.router, prefix="/api/bunk", tags=["Bunk Calculator"])
 app.include_router(roast.router, prefix="/api/roast", tags=["Roast Engine"])
 app.include_router(excuse.router, prefix="/api/excuse", tags=["Excuse Generator"])
-# app.include_router(classroom.router, prefix="/api/classroom", tags=["Classroom"])
+app.include_router(classroom.router, prefix="/api/classroom", tags=["Classroom"])
 # app.include_router(reels.router, prefix="/api/reels", tags=["Reels Feed"])
 # app.include_router(media.router, prefix="/api/media", tags=["Media/OCR"])
