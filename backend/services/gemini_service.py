@@ -21,12 +21,12 @@ def get_gemini_client(system_instruction: str = None, json_mode: bool = False):
         kwargs["generation_config"] = {"response_mime_type": "application/json"}
     return genai.GenerativeModel(**kwargs)
 
-async def generate_chacha_roast(cgpa: float, grades: dict) -> str:
+async def generate_chacha_roast(gpa: float, major: str) -> str:
     """Generate a savage Chacha GPT roast + recovery plan for a student based on CGPA."""
     model = get_gemini_client(system_instruction=CHACHA_GPT_SYSTEM_PROMPT)
     
-    prompt = f"The student got these grades: {json.dumps(grades)}. Their calculated CGPA is {cgpa:.2f}. "
-    if cgpa < 2.5:
+    prompt = f"The student is studying {major}. Their CGPA is {gpa:.2f}. "
+    if gpa < 2.5:
         prompt += "This is TERRIBLE. Roast them severely (in Hinglish) for 3 sentences, then provide a strict, no-nonsense 4-week recovery plan to fix their life."
     else:
         prompt += "This is decent, but tell them not to get cocky. Roast them mildly for 2 sentences, then give them a tip to secure a 4.0."
@@ -59,3 +59,23 @@ async def generate_classroom_summary(assignments_raw: str) -> dict:
     """
     response = model.generate_content(prompt)
     return json.loads(response.text)
+
+async def generate_vision_scan(image_bytes: bytes, mime_type: str = "image/jpeg") -> dict:
+    """Analyze notes/timetable, extract text, and generate 5 exam questions."""
+    model = get_gemini_client(system_instruction=CHACHA_GPT_SYSTEM_PROMPT, json_mode=True)
+    prompt = "Analyze this image. Clean up and summarize the text. Then generate 5 highly likely exam questions based on it. Return JSON format: {\"summary\": \"...\", \"exam_questions\": [\"Q1\", ...]}"
+    response = model.generate_content([
+        prompt,
+        {"mime_type": mime_type, "data": image_bytes},
+    ])
+    return json.loads(response.text)
+
+async def generate_audio_reply(audio_bytes: bytes, mime_type: str = "audio/wav") -> str:
+    """Transcribe audio and reply as Chacha GPT in Hinglish."""
+    model = get_gemini_client(system_instruction=CHACHA_GPT_SYSTEM_PROMPT)
+    prompt = "Listen to this student's voice note. Transcribe what they said mentally, then reply out loud as Chacha GPT in Hinglish. Keep it under 3 sentences."
+    response = model.generate_content([
+        prompt,
+        {"mime_type": mime_type, "data": audio_bytes},
+    ])
+    return response.text
