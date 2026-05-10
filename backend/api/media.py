@@ -1,7 +1,7 @@
 from fastapi import APIRouter, UploadFile, File
 import base64
 from pydantic import BaseModel
-from services.gemini_service import generate_vision_scan, generate_audio_reply
+from backend.services.gemini_service import generate_vision_scan, generate_audio_reply
 
 router = APIRouter()
 

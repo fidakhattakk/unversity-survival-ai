@@ -5,7 +5,7 @@ Handles all AI text/vision/audio generation via the Gemini API.
 
 import json
 import google.generativeai as genai
-from core.config import settings
+from backend.core.config import settings
 
 # Configure Gemini globally
 genai.configure(api_key=settings.GEMINI_API_KEY)

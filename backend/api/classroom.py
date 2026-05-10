@@ -1,6 +1,6 @@
 from fastapi import APIRouter
 from pydantic import BaseModel
-from services.gemini_service import generate_classroom_summary
+from backend.services.gemini_service import generate_classroom_summary
 
 router = APIRouter()
 

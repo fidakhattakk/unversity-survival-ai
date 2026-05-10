@@ -2,10 +2,15 @@
 🔥 UETSurvival.ai — FastAPI Backend Entrypoint
 """
 
+import sys
+import os
+# Add the project root to sys.path so 'backend.xxx' imports work everywhere
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-from core.config import settings
+from backend.core.config import settings
 
 app = FastAPI(
     title="UETSurvival.ai API",
@@ -34,7 +39,7 @@ async def health():
 
 
 # ── Route registration (will be wired up as features are built) ──
-from api import bunk, roast, excuse, classroom, reels, media
+from backend.api import bunk, roast, excuse, classroom, reels, media
 # app.include_router(bunk.router, prefix="/api/bunk", tags=["Bunk Calculator"])
 app.include_router(roast.router, prefix="/api/roast", tags=["Roast Engine"])
 app.include_router(excuse.router, prefix="/api/excuse", tags=["Excuse Generator"])
